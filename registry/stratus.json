@@ -1,0 +1,21 @@
+{
+  "name": "stratus",
+  "type": "registry:ui",
+  "description": "A full cloud sky, kept as an extra. Self-contained volumetric sky shader.",
+  "dependencies": [
+    "clsx",
+    "react",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/components/ui/stratus.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:lib"
+    }
+  ]
+}

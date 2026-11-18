@@ -1,0 +1,36 @@
+# cloudcn
+
+> Copy-paste WebGL cloud components for React and Tailwind, in the style of shadcn/ui. Seven raymarched or layered shader clouds on transparent backgrounds, so they float over any UI. MIT licensed, TypeScript, no package install: you copy the code and own it.
+
+cloudcn is a component library you vendor into your own repo, not an npm dependency. Each cloud is a real shader on a transparent canvas: 3D fBm density raymarched in a fragment shader with Beer-Lambert absorption, powder darkening and Henyey-Greenstein silver linings, or layered 2D noise for the thin clouds. Every canvas pauses off screen, respects prefers-reduced-motion, and falls back to a gradient without WebGL.
+
+## Components
+
+- [Nimbus](https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/nimbus.tsx): one fair-weather volumetric cumulus, drag to orbit
+- [Dusk](https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/dusk.tsx): the same volume lit by a low sun, warm edges and violet shadows
+- [Tempest](https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/tempest.tsx): storm tower with an anvil top, `lightning` 0 to 1
+- [Horizon](https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/horizon.tsx): wide cloud bank for a hero base or divider
+- [Wisp](https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/wisp.tsx): thin high streaks, `tone` white or slate, sits behind text
+- [Haze](https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/haze.tsx): low fog that thickens toward the bottom edge
+- [Stratus](https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/stratus.tsx): a full cloud sky, kept as an extra
+
+## Install
+
+Copy `src/lib/utils.ts` and `src/lib/glcanvas.tsx` (plus `src/lib/volume.tsx` for Nimbus, Dusk, Tempest and Horizon), then copy the component file from `src/components/ui/`. Tailwind v4 with the `@` alias pointing at `src` is assumed.
+
+A shadcn-style registry with inline file contents is served from this site, so the CLI flow also works: `npx shadcn@latest add "https://cloudcn.pages.dev/r/nimbus.json"`.
+
+## Shared props
+
+`coverage` (0 to 1), `density`, `speed` (0 freezes motion), `sunElevation`, `sunAzimuth`, `quality` (render scale 0.25 to 1), `steps`, `seed`, `time` (fixed time for stills), `interactive`.
+
+## Honest limits
+
+Procedural clouds, not photographs. Tempest is soft. Dusk shows a faint green fringe on very dark backgrounds. Tested in headless Chrome with software rendering; real phone GPU speed is not measured.
+
+## Links
+
+- [Demo](https://cloudcn.pages.dev/)
+- [GitHub](https://github.com/Unselfisheologism/cloudcn)
+- [Registry](https://github.com/Unselfisheologism/cloudcn/tree/main/registry)
+- [License (MIT)](https://github.com/Unselfisheologism/cloudcn/blob/main/LICENSE)
