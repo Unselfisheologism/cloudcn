@@ -396,6 +396,7 @@ html:has(.page), body:has(.page) { overscroll-behavior-y: none; }
   display: flex; flex-direction: column; align-items: center; gap: 22px;
   text-align: center;
   padding: 0 20px;
+  max-width: 100%;
 }
 .closingText .title { text-shadow: 0 2px 24px #00000080; }
 
@@ -446,7 +447,7 @@ html:has(.page), body:has(.page) { overscroll-behavior-y: none; }
   .nav { grid-template-columns: 1fr auto; }
   .navLinks { display: none; }
   .heroActions > * { flex: 100%; justify-content: center; }
-  .command { max-width: 100%; white-space: nowrap; gap: 10px; padding: 0 12px; font-size: 11px; }
+  .command { max-width: 100%; white-space: normal; overflow-wrap: anywhere; gap: 10px; padding: 10px 12px; height: auto; min-height: 48px; font-size: 11px; }
   .steps, .trio, .split, .swap { grid-template-columns: minmax(0, 1fr); }
   .step + .step, .feature + .feature { border-left: 0; border-top: 1px solid var(--line); }
   .trio { grid-template-rows: none; }
