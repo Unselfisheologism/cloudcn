@@ -193,6 +193,10 @@ html:has(.page), body:has(.page) { overscroll-behavior-y: none; }
   overflow: hidden;
 }
 .heroSky { position: absolute; inset: 0; pointer-events: none; }
+.heroSky::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(66% 60% at 50% 46%, #070a12e6 0%, #070a12a8 48%, #070a1200 78%);
+}
 .heroSky .wisp { position: absolute; inset: 0; width: 100%; height: 100%; }
 .heroSky .horizon { position: absolute; left: 0; right: 0; bottom: -40px; height: 200px; width: 100%; opacity: 0.8; }
 .hero > *:not(.heroSky) { position: relative; }
