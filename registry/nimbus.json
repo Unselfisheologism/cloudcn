@@ -1,0 +1,23 @@
+{
+  "name": "nimbus",
+  "type": "registry:ui",
+  "description": "One realistic volumetric 3D cumulus, transparent background.",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/components/ui/nimbus.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/lib/volume.tsx",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/lib/glcanvas.tsx",
+      "type": "registry:lib"
+    }
+  ]
+}
