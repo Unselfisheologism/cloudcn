@@ -37,7 +37,7 @@ function Demo() {
   return (
     <div className={"min-h-screen " + (dark ? "bg-[#05070f] text-white" : "bg-white text-slate-900")}>
       <header className="mx-auto max-w-6xl px-6 pt-14 pb-8">
-        <p className={"text-sm font-medium " + (dark ? "text-slate-400" : "text-slate-500")}>Cirrus</p>
+        <p className={"text-sm font-medium " + (dark ? "text-slate-400" : "text-slate-500")}>cloudcn</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl">Real clouds for your UI.</h1>
         <p className={"mt-4 max-w-xl " + (dark ? "text-slate-300" : "text-slate-600")}>
           Copy-paste React and Tailwind components. Four are raymarched 3D volumes on a transparent background. Drag them to turn them.
