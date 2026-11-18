@@ -1,4 +1,4 @@
-# Cirrus
+# cloudcn
 
 Copy-paste WebGL cloud components for React and Tailwind, in the style of shadcn/ui. Each cloud is a real raymarched or layered shader on a transparent background, so you can float it over any UI.
 
