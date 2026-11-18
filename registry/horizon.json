@@ -1,0 +1,23 @@
+{
+  "name": "horizon",
+  "type": "registry:ui",
+  "description": "Wide low cloud bank, a divider or hero base.",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/components/ui/horizon.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/lib/volume.tsx",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/lib/glcanvas.tsx",
+      "type": "registry:lib"
+    }
+  ]
+}
