@@ -1,0 +1,19 @@
+{
+  "name": "wisp",
+  "type": "registry:ui",
+  "description": "High thin cirrus streaks. tone slate for light pages.",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/components/ui/wisp.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/lib/glcanvas.tsx",
+      "type": "registry:lib"
+    }
+  ]
+}
