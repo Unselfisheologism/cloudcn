@@ -1,0 +1,23 @@
+{
+  "name": "tempest",
+  "type": "registry:ui",
+  "description": "Storm tower with anvil top and internal lightning.",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/components/ui/tempest.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/lib/volume.tsx",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/lib/glcanvas.tsx",
+      "type": "registry:lib"
+    }
+  ]
+}
