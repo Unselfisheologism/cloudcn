@@ -1,0 +1,19 @@
+{
+  "name": "haze",
+  "type": "registry:ui",
+  "description": "Low drifting fog that thickens toward the bottom. tone slate for light pages.",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/components/ui/haze.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/lib/glcanvas.tsx",
+      "type": "registry:lib"
+    }
+  ]
+}
