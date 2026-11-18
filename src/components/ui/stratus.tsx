@@ -1,5 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { CloudFallback } from "@/lib/fallback";
+import { frameLooksEmpty } from "@/lib/glcanvas";
 
 /**
  * Stratus - realistic volumetric clouds for any UI.
@@ -141,15 +143,19 @@ export const Stratus = React.forwardRef<HTMLDivElement, StratusProps>(function S
 
   React.useEffect(() => {
     const canvas = canvasRef.current!;
-    const gl = canvas.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false });
+    const gl = (canvas.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false }) ||
+      canvas.getContext("experimental-webgl", { premultipliedAlpha: true, alpha: true, antialias: false } as WebGLContextAttributes)) as WebGLRenderingContext | null;
     if (!gl) { setFailed(true); return; }
+    const onLost = (e: Event) => { e.preventDefault(); setFailed(true); };
+    canvas.addEventListener("webglcontextlost", onLost);
     let prog: WebGLProgram;
     try {
       prog = gl.createProgram()!;
       gl.attachShader(prog, compile(gl, gl.VERTEX_SHADER, VERT));
       gl.attachShader(prog, compile(gl, gl.FRAGMENT_SHADER, FRAG));
       gl.linkProgram(prog);
-    } catch (e) { console.error(e); setFailed(true); return; }
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog) || "link");
+    } catch (e) { console.error(e); canvas.removeEventListener("webglcontextlost", onLost); setFailed(true); return; }
     gl.useProgram(prog);
     const buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
@@ -162,7 +168,7 @@ export const Stratus = React.forwardRef<HTMLDivElement, StratusProps>(function S
       sky: u("uSky"), seed: u("uSeed"), steps: u("uSteps"), sun: u("uSun") };
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let visible = true, raf = 0, clock = 0, last = performance.now();
+    let visible = true, raf = 0, clock = 0, last = performance.now(), probed = false;
     const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 });
     io.observe(canvas);
 
@@ -191,12 +197,16 @@ export const Stratus = React.forwardRef<HTMLDivElement, StratusProps>(function S
       gl.uniform1f(U.steps, Math.max(16, Math.min(96, p.steps)));
       gl.uniform3f(U.sun, Math.sin(az) * Math.cos(el), Math.sin(el), Math.cos(az) * Math.cos(el));
       gl.drawArrays(gl.TRIANGLES, 0, 3);
+      if (!probed && w >= 64 && h >= 64) {
+        probed = true;
+        if (frameLooksEmpty(gl, w, h)) { cancelAnimationFrame(raf); raf = 0; setFailed(true); return; }
+      }
       if (fixed || reduce) { cancelAnimationFrame(raf); raf = 0; (canvas as any).dataset.ready = "1"; }
     };
     raf = requestAnimationFrame(frame);
     // static modes redraw when props change
     (canvas as any).__redraw = () => { if (!raf) raf = requestAnimationFrame(frame); };
-    return () => { cancelAnimationFrame(raf); io.disconnect(); };
+    return () => { cancelAnimationFrame(raf); io.disconnect(); canvas.removeEventListener("webglcontextlost", onLost); };
   }, []);
 
   React.useEffect(() => { (canvasRef.current as any)?.__redraw?.(); }, [coverage, density, sunElevation, sunAzimuth, pitch, sky, quality, steps, seed, time]);
@@ -204,7 +214,7 @@ export const Stratus = React.forwardRef<HTMLDivElement, StratusProps>(function S
   return (
     <div ref={ref} className={cn("relative isolate overflow-hidden", className)} {...rest}>
       {failed ? (
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-sky-500 to-sky-200" aria-hidden />
+        <CloudFallback style={{ zIndex: -1 }} />
       ) : (
         <canvas ref={canvasRef} aria-hidden className="absolute inset-0 -z-10 h-full w-full" />
       )}
