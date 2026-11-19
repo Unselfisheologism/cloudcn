@@ -36,7 +36,40 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <style>
+        body:has(.staticGuide) { margin: 0; background: #070a12; }
+        .staticGuide a { color: #b8d8ff; text-decoration: underline; text-underline-offset: 3px; }
+        .staticGuide h1 { font-size: 2.5rem; font-weight: 650; margin: 0 0 1rem; }
+        .staticGuide h2 { font-size: 1.35rem; font-weight: 600; margin: 2rem 0 .75rem; }
+        .staticGuide p { margin: 1rem 0; }
+        .staticGuide ul { padding-left: 1.25rem; list-style: disc; }
+        .staticGuide li { margin: .6rem 0; }
+      </style>
+      <main class="staticGuide" style="max-width:52rem;margin:4rem auto;padding:0 1.5rem;font-family:system-ui,sans-serif;line-height:1.7;color:#e4e8f1">
+        <h1>cloudcn</h1>
+        <p>Copy-paste WebGL cloud components for React and Tailwind, in the style of shadcn/ui.</p>
+        <p>Seven components on transparent backgrounds: volumetric clouds, thin streaks, fog and a full sky. Free and MIT licensed. Copy the source into your project or use the shadcn CLI.</p>
+        <p><a href="https://github.com/Unselfisheologism/cloudcn">Source on GitHub</a> · <a href="/r/index.json">Component registry</a> · <a href="/llms-full.txt">Full text guide</a></p>
+        <h2 id="components">Components</h2>
+        <ul>
+          <li><a href="https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/nimbus.tsx">Nimbus</a>: Fair-weather volumetric cumulus. Drag to orbit.</li>
+          <li><a href="https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/dusk.tsx">Dusk</a>: Low-sun light, warm edges and violet shadows.</li>
+          <li><a href="https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/tempest.tsx">Tempest</a>: Storm tower with an anvil top and lightning.</li>
+          <li><a href="https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/horizon.tsx">Horizon</a>: Wide cloud bank for a hero base or divider.</li>
+          <li><a href="https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/wisp.tsx">Wisp</a>: Thin high streaks behind text.</li>
+          <li><a href="https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/haze.tsx">Haze</a>: Low fog that thickens toward the bottom edge.</li>
+          <li><a href="https://github.com/Unselfisheologism/cloudcn/blob/main/src/components/ui/stratus.tsx">Stratus</a>: Full cloud sky.</li>
+        </ul>
+        <h2 id="install">Install a component</h2>
+        <pre style="white-space:pre-wrap;overflow-wrap:anywhere"><code>npx shadcn@latest add "https://cloudcn.pages.dev/r/nimbus.json"</code></pre>
+        <p>For manual installation, see the <a href="https://github.com/Unselfisheologism/cloudcn#use-it">usage guide</a>. Tailwind v4 and an @ alias pointing to src are assumed.</p>
+        <h2>Rendering and limits</h2>
+        <p>Nimbus, Dusk, Tempest and Horizon share a raymarched volume renderer. Stratus has its own raymarched sky. Wisp and Haze use layered shaders. A static SVG cloud appears if WebGL is unavailable or fails.</p>
+        <p>Procedural clouds, not photographs. Tested in headless Chrome with software rendering; real phone GPU speed is not measured.</p>
+        <noscript><p>JavaScript is off. Enable it for interactive cloud previews. The source, installation command and component links above still work.</p></noscript>
+      </main>
+    </div>
     <script type="module" src="/src/demo.tsx"></script>
   </body>
 </html>
