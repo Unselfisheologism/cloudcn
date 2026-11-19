@@ -1,5 +1,7 @@
 # cloudcn
 
+[Live demo](https://cloudcn.pages.dev/) · [Component registry](https://cloudcn.pages.dev/r/index.json) · [MIT license](./LICENSE)
+
 Copy-paste WebGL cloud components for React and Tailwind, in the style of shadcn/ui. Each cloud is a real raymarched or layered shader on a transparent background, so you can float it over any UI.
 
 | Component | What it is | Needs |
@@ -14,7 +16,7 @@ Copy-paste WebGL cloud components for React and Tailwind, in the style of shadcn
 
 ## Use it
 
-1. Copy `src/lib/utils.ts` and `src/lib/glcanvas.tsx`. For Nimbus, Dusk, Tempest and Horizon also copy `src/lib/volume.tsx`.
+1. Copy `src/lib/utils.ts`, `src/lib/glcanvas.tsx` and `src/lib/fallback.tsx`. For Nimbus, Dusk, Tempest and Horizon also copy `src/lib/volume.tsx`.
 2. Copy the component file from `src/components/ui/`.
 3. Make sure Tailwind v4 is set up and the `@` alias points at `src`.
 
@@ -34,7 +36,7 @@ On light pages use `tone="slate"` for Wisp and Haze.
 
 ## How it looks real
 
-3D fBm density raymarched in a fragment shader. Light is marched toward the sun at each sample (Beer-Lambert, powder darkening, dual-lobe Henyey-Greenstein scattering for silver linings), with a sky-tinted ambient. Each canvas pauses off screen, respects prefers-reduced-motion, and falls back to a gradient without WebGL.
+3D fBm density raymarched in a fragment shader. Light is marched toward the sun at each sample (Beer-Lambert, powder darkening, dual-lobe Henyey-Greenstein scattering for silver linings), with a sky-tinted ambient. Each canvas pauses off screen, respects prefers-reduced-motion, and shows a static SVG cloud if WebGL is unavailable or fails.
 
 ## Honest limits
 
