@@ -2,7 +2,7 @@
 
 > Copy-paste WebGL cloud components for React and Tailwind, in the style of shadcn/ui. Seven raymarched or layered shader clouds on transparent backgrounds, so they float over any UI. MIT licensed, TypeScript, no package install: you copy the code and own it.
 
-cloudcn is a component library you vendor into your own repo, not an npm dependency. Each cloud is a real shader on a transparent canvas: 3D fBm density raymarched in a fragment shader with Beer-Lambert absorption, powder darkening and Henyey-Greenstein silver linings, or layered 2D noise for the thin clouds. Every canvas pauses off screen, respects prefers-reduced-motion, and falls back to a gradient without WebGL.
+cloudcn is a component library you vendor into your own repo, not an npm dependency. Each cloud is a real shader on a transparent canvas: 3D fBm density raymarched in a fragment shader with Beer-Lambert absorption, powder darkening and Henyey-Greenstein silver linings, or layered 2D noise for the thin clouds. Every canvas pauses off screen, respects prefers-reduced-motion, and shows a static SVG cloud if WebGL is unavailable or fails.
 
 ## Components
 
@@ -16,7 +16,7 @@ cloudcn is a component library you vendor into your own repo, not an npm depende
 
 ## Install
 
-Copy `src/lib/utils.ts` and `src/lib/glcanvas.tsx` (plus `src/lib/volume.tsx` for Nimbus, Dusk, Tempest and Horizon), then copy the component file from `src/components/ui/`. Tailwind v4 with the `@` alias pointing at `src` is assumed.
+Copy `src/lib/utils.ts`, `src/lib/glcanvas.tsx` and `src/lib/fallback.tsx` (plus `src/lib/volume.tsx` for Nimbus, Dusk, Tempest and Horizon), then copy the component file from `src/components/ui/`. Tailwind v4 with the `@` alias pointing at `src` is assumed.
 
 A shadcn-style registry with inline file contents is served from this site, so the CLI flow also works: `npx shadcn@latest add "https://cloudcn.pages.dev/r/nimbus.json"`.
 
